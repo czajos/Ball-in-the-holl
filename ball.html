@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+   
+</head>
+
+<body >
+
+    <canvas id="gra" width="600px" height="600px"></canvas>
+
+    <div class="tło">
+        
+        <div class="ball"></div>
+        <div class="hole"></div>
+    </div>
+    <pre class="output"></pre>
+   
+       <style>
+           .tło{
+               background-color: grey;
+               height: 600px;
+               width: 600px;
+               position: relative;
+               border-radius: 10px;
+           }
+           .ball{
+               background:red;
+               height: 20px;
+               width: 20px;
+               top: 290px;
+               left: 290px;
+               position:absolute;
+               border-radius: 100%;
+             
+           }
+
+           .hole{
+               background: black;
+               height: 30px;
+               width: 30px;
+               border-radius: 100%;
+               top: 20px;
+               left: 20px;
+               position: absolute;
+           }
+
+           body{
+               margin:0;
+
+           }
+
+       </style>
+
+
+<script>
+
+    
+        let ball=document.querySelector('.ball');
+        let tło=document.querySelector('.tło');
+        let hole=document.querySelector('.hole');
+        let output=document.querySelector('.output');
+        
+        
+        let maxX=tło.clientWidth-ball.clientWidth;
+        let maxY=tło.clientHeight-ball.clientHeight;
+
+        function moveMe(event){
+            
+            
+            let x=event.beta;
+            let y=event.gamma;
+            
+            output.innerHtml = "beta: " + x + "\n";
+            output.innerHtml += "gamma: " + y + "\n";
+
+            if (x >  90) { x =  90};
+  if (x < -90) { x = -90};
+  x += 90;
+  y += 90;
+
+  ball.style.top  = (maxX*x/180 - 10) + "px";
+  ball.style.left = (maxY*y/180 - 10) + "px";
+            
+        }
+        window.addEventListener('deviceorientation',moveMe,true);
+        place()
+        function inhole(){
+             let xx=parseInt(document.getElementById("hole").style.left);
+             let yy=parseInt(document.getElementById("hole").style.top);
+
+             let ballX=parse.Int(document.getElementById("tło").style.left);
+             let ballY=parse.Int(document.getElementById("tło").style.top);
+             if(ballX >= xx && ballX <= xx + 20 && ballY >= yy && ballY <= yy + 20){
+              place();
+              alert("Congratz!")
+  
+   
+             }
+             
+        }
+
+        </script>
+</body>
+</html>
